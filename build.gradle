@@ -1,0 +1,33 @@
+plugins {
+    id 'java'
+    id 'org.hidetake.swagger.generator' version '2.19.2'
+}
+
+apply from: "gradle/apiCodeGen.gradle"
+
+group 'org.example'
+version '1.0-SNAPSHOT'
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    swaggerCodegen 'io.swagger:swagger-codegen-cli:2.4.31'             // Swagger Codegen V2
+    implementation 'io.swagger:swagger-annotations:1.6.2'
+    implementation 'com.fasterxml.jackson.core:jackson-annotations:2.14.2'
+    implementation 'org.springframework:spring-beans:3.0.5.RELEASE'
+
+
+
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.8.1'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.8.1'
+}
+
+sourceSets {
+    main.java.srcDirs "${petApiDir.path}/src/main/java"
+}
+
+test {
+    useJUnitPlatform()
+}
